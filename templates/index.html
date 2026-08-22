@@ -2,10 +2,16 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>DisasterGuard AI | Alpha Force Team</title>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        DisasterGuard AI | Alpha Force Team
+    </title>
+
 
     <style>
 
@@ -15,65 +21,100 @@
             box-sizing: border-box;
         }
 
+
         :root {
+
             --bg: #050b16;
-            --panel: rgba(10, 20, 36, 0.78);
-            --panel-light: rgba(18, 31, 52, 0.75);
+
+            --panel: rgba(10, 20, 36, 0.82);
+
             --border: rgba(148, 163, 184, 0.16);
+
             --text: #f8fafc;
+
             --muted: #94a3b8;
+
             --blue: #38bdf8;
+
             --cyan: #22d3ee;
+
             --green: #34d399;
+
             --yellow: #fbbf24;
+
             --red: #fb7185;
         }
 
+
         body {
-            font-family: Inter, "Segoe UI", Arial, sans-serif;
+
+            font-family:
+                Inter,
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
             color: var(--text);
+
             min-height: 100vh;
+
             overflow-x: hidden;
 
             background:
+
                 radial-gradient(
-                    circle at 15% 15%,
+                    circle at 10% 10%,
                     rgba(14, 116, 144, 0.28),
                     transparent 28%
                 ),
+
                 radial-gradient(
-                    circle at 85% 20%,
+                    circle at 90% 20%,
                     rgba(37, 99, 235, 0.22),
                     transparent 28%
                 ),
+
                 radial-gradient(
                     circle at 50% 100%,
                     rgba(127, 29, 29, 0.18),
                     transparent 35%
                 ),
+
                 #050b16;
         }
 
 
-        /* ================= BACKGROUND ================= */
+        /* ======================================
+           BACKGROUND
+        ====================================== */
 
         .background {
+
             position: fixed;
+
             inset: 0;
+
             pointer-events: none;
+
             overflow: hidden;
+
             z-index: -1;
         }
 
+
         .grid-bg {
+
             position: absolute;
+
             inset: 0;
 
             background-image:
+
                 linear-gradient(
                     rgba(56, 189, 248, 0.035) 1px,
                     transparent 1px
                 ),
+
                 linear-gradient(
                     90deg,
                     rgba(56, 189, 248, 0.035) 1px,
@@ -82,96 +123,151 @@
 
             background-size: 50px 50px;
 
-            mask-image: linear-gradient(
-                to bottom,
-                black,
-                transparent
-            );
+            mask-image:
+                linear-gradient(
+                    to bottom,
+                    black,
+                    transparent
+                );
         }
+
 
         .orb {
+
             position: absolute;
+
             border-radius: 50%;
+
             filter: blur(80px);
+
             opacity: 0.25;
-            animation: float 10s ease-in-out infinite;
+
+            animation:
+                floating 10s ease-in-out infinite;
         }
 
+
         .orb-one {
+
             width: 300px;
             height: 300px;
+
             background: #0369a1;
+
             left: -100px;
+
             top: 200px;
         }
 
+
         .orb-two {
+
             width: 350px;
             height: 350px;
+
             background: #7f1d1d;
+
             right: -120px;
+
             top: 400px;
+
             animation-delay: 2s;
         }
 
+
         .orb-three {
+
             width: 250px;
             height: 250px;
+
             background: #164e63;
+
             left: 40%;
+
             bottom: -100px;
+
             animation-delay: 4s;
         }
 
-        @keyframes float {
 
-            0%, 100% {
-                transform: translateY(0);
+        @keyframes floating {
+
+            0%,
+            100% {
+
+                transform:
+                    translateY(0);
+
             }
 
             50% {
-                transform: translateY(-35px);
+
+                transform:
+                    translateY(-35px);
+
             }
         }
 
 
-        /* ================= NAVBAR ================= */
+        /* ======================================
+           NAVBAR
+        ====================================== */
 
         .navbar {
-            height: 76px;
-            padding: 0 6%;
+
+            height: 88px;
+
+            padding:
+                0 5%;
 
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
 
-            background: rgba(3, 10, 20, 0.72);
-
-            backdrop-filter: blur(18px);
-
-            border-bottom: 1px solid var(--border);
-
             position: sticky;
+
             top: 0;
 
             z-index: 100;
+
+            background:
+                rgba(3, 10, 20, 0.78);
+
+            backdrop-filter:
+                blur(18px);
+
+            border-bottom:
+                1px solid var(--border);
         }
 
+
         .brand {
+
             display: flex;
+
             align-items: center;
+
             gap: 13px;
         }
 
+
         .brand-icon {
-            width: 43px;
-            height: 43px;
+
+            width: 45px;
+
+            height: 45px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
 
             border-radius: 13px;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-size: 22px;
 
             background:
                 linear-gradient(
@@ -181,101 +277,246 @@
                 );
 
             box-shadow:
-                0 0 25px rgba(14, 165, 233, 0.35);
-
-            font-size: 22px;
+                0 0 25px
+                rgba(14, 165, 233, 0.35);
         }
+
 
         .brand-name {
+
             font-size: 20px;
+
             font-weight: 800;
-            letter-spacing: -0.5px;
+
+            letter-spacing:
+                -0.5px;
         }
 
+
         .brand-name span {
+
             color: var(--cyan);
         }
 
+
         .team-name {
+
             color: #64748b;
+
             font-size: 10px;
+
             font-weight: 800;
+
             letter-spacing: 1.4px;
+
             margin-top: 3px;
         }
 
-        .status {
+
+        /* ======================================
+           TOP TEAM DETAILS
+        ====================================== */
+
+        .top-team-info {
+
+            position: absolute;
+
+            left: 50%;
+
+            transform:
+                translateX(-50%);
+
+            text-align: center;
+
+            padding:
+                8px 24px;
+
+            border-radius: 14px;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    rgba(14, 165, 233, 0.10),
+                    rgba(30, 41, 59, 0.48)
+                );
+
+            border:
+                1px solid
+                rgba(56, 189, 248, 0.18);
+
+            box-shadow:
+                0 0 30px
+                rgba(14, 165, 233, 0.07);
+
+            backdrop-filter:
+                blur(12px);
+        }
+
+
+        .top-team-title {
+
+            color: #38bdf8;
+
+            font-size: 12px;
+
+            font-weight: 900;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .top-team-members {
+
             display: flex;
+
             align-items: center;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            color: #cbd5e1;
+
+            font-size: 10px;
+        }
+
+
+        .top-team-members b {
+
+            color: #f8fafc;
+
+            font-weight: 700;
+        }
+
+
+        .top-team-members small {
+
+            color: #38bdf8;
+
+            font-size: 9px;
+
+            font-weight: 700;
+        }
+
+
+        .team-divider {
+
+            color: #334155;
+        }
+
+
+        /* ======================================
+           SYSTEM STATUS
+        ====================================== */
+
+        .status {
+
+            display: flex;
+
+            align-items: center;
+
             gap: 9px;
 
-            padding: 8px 14px;
-
-            border: 1px solid rgba(52, 211, 153, 0.25);
-
-            background: rgba(16, 185, 129, 0.08);
+            padding:
+                8px 14px;
 
             border-radius: 30px;
+
+            background:
+                rgba(16, 185, 129, 0.08);
+
+            border:
+                1px solid
+                rgba(52, 211, 153, 0.25);
 
             color: #6ee7b7;
 
             font-size: 12px;
+
             font-weight: 700;
         }
 
+
         .status-dot {
+
             width: 8px;
+
             height: 8px;
 
             border-radius: 50%;
 
-            background: var(--green);
+            background:
+                var(--green);
 
             box-shadow:
-                0 0 12px var(--green);
+                0 0 12px
+                var(--green);
 
-            animation: pulse 1.5s infinite;
+            animation:
+                pulse 1.5s infinite;
         }
+
 
         @keyframes pulse {
 
-            0%, 100% {
+            0%,
+            100% {
+
                 opacity: 1;
-                transform: scale(1);
+
+                transform:
+                    scale(1);
             }
 
             50% {
+
                 opacity: 0.45;
-                transform: scale(0.75);
+
+                transform:
+                    scale(0.75);
             }
         }
 
 
-        /* ================= HERO ================= */
+        /* ======================================
+           HERO
+        ====================================== */
 
         .hero {
+
             max-width: 1200px;
+
             margin: auto;
 
-            padding: 70px 20px 40px;
+            padding:
+                70px 20px 40px;
 
             text-align: center;
         }
 
+
         .system-label {
+
             display: inline-flex;
 
             align-items: center;
 
             gap: 8px;
 
-            padding: 8px 15px;
+            padding:
+                8px 15px;
 
             border-radius: 30px;
 
-            background: rgba(14, 165, 233, 0.08);
+            background:
+                rgba(14, 165, 233, 0.08);
 
-            border: 1px solid rgba(56, 189, 248, 0.2);
+            border:
+                1px solid
+                rgba(56, 189, 248, 0.2);
 
             color: #7dd3fc;
 
@@ -288,22 +529,32 @@
             margin-bottom: 22px;
         }
 
+
         .hero h1 {
-            font-size: clamp(42px, 7vw, 76px);
 
-            line-height: 0.98;
+            font-size:
+                clamp(42px, 7vw, 76px);
 
-            letter-spacing: -3px;
+            line-height:
+                0.98;
+
+            letter-spacing:
+                -3px;
 
             margin-bottom: 24px;
         }
 
-        .hero h1 .white {
+
+        .white {
+
             color: white;
         }
 
-        .hero h1 .blue {
+
+        .blue {
+
             background:
+
                 linear-gradient(
                     90deg,
                     #38bdf8,
@@ -318,22 +569,29 @@
             color: transparent;
         }
 
+
         .hero p {
+
             max-width: 700px;
 
             margin: auto;
 
-            color: var(--muted);
+            color:
+                var(--muted);
 
-            line-height: 1.7;
+            line-height:
+                1.7;
 
             font-size: 16px;
         }
 
 
-        /* ================= DASHBOARD ================= */
+        /* ======================================
+           MAIN CONTAINER
+        ====================================== */
 
         .container {
+
             max-width: 1200px;
 
             margin: auto;
@@ -341,38 +599,50 @@
             padding: 20px;
         }
 
+
         .dashboard {
+
             display: grid;
 
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns:
+                1fr 1fr;
 
             gap: 22px;
         }
 
+
         .glass-card {
+
             background:
+
                 linear-gradient(
                     145deg,
                     rgba(15, 30, 50, 0.82),
-                    rgba(5, 13, 25, 0.88)
+                    rgba(5, 13, 25, 0.90)
                 );
 
-            border: 1px solid var(--border);
+            border:
+                1px solid var(--border);
 
             border-radius: 24px;
 
             padding: 28px;
 
             box-shadow:
-                0 25px 70px rgba(0, 0, 0, 0.3);
+                0 25px 70px
+                rgba(0, 0, 0, 0.30);
 
-            backdrop-filter: blur(20px);
+            backdrop-filter:
+                blur(20px);
         }
 
 
-        /* ================= CARD HEADER ================= */
+        /* ======================================
+           CARD HEADER
+        ====================================== */
 
         .card-title {
+
             display: flex;
 
             align-items: center;
@@ -382,8 +652,11 @@
             margin-bottom: 7px;
         }
 
+
         .card-title-icon {
+
             width: 40px;
+
             height: 40px;
 
             display: flex;
@@ -394,19 +667,27 @@
 
             border-radius: 11px;
 
-            background: rgba(56, 189, 248, 0.1);
+            background:
+                rgba(56, 189, 248, 0.10);
 
-            border: 1px solid rgba(56, 189, 248, 0.15);
+            border:
+                1px solid
+                rgba(56, 189, 248, 0.15);
 
             font-size: 19px;
         }
 
+
         .card-title h2 {
+
             font-size: 20px;
         }
 
+
         .card-subtitle {
-            color: var(--muted);
+
+            color:
+                var(--muted);
 
             font-size: 13px;
 
@@ -414,17 +695,23 @@
         }
 
 
-        /* ================= INPUTS ================= */
+        /* ======================================
+           INPUTS
+        ====================================== */
 
         .input-grid {
+
             display: grid;
 
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns:
+                1fr 1fr;
 
             gap: 17px;
         }
 
+
         .input-group label {
+
             display: flex;
 
             justify-content: space-between;
@@ -438,79 +725,109 @@
             font-weight: 700;
         }
 
+
         .unit {
+
             color: #64748b;
 
             font-weight: 500;
         }
 
+
         .input-wrapper {
+
             position: relative;
         }
 
+
         .input-icon {
+
             position: absolute;
 
             left: 13px;
 
             top: 50%;
 
-            transform: translateY(-50%);
+            transform:
+                translateY(-50%);
 
             font-size: 16px;
 
             z-index: 2;
         }
 
+
         input {
+
             width: 100%;
 
-            padding: 14px 12px 14px 42px;
+            padding:
+                14px 12px 14px 42px;
 
             border-radius: 12px;
 
-            border: 1px solid rgba(148, 163, 184, 0.16);
+            border:
+                1px solid
+                rgba(148, 163, 184, 0.16);
 
             outline: none;
 
-            background: rgba(2, 8, 20, 0.7);
+            background:
+                rgba(2, 8, 20, 0.7);
 
             color: white;
 
             font-size: 14px;
 
-            transition: 0.25s;
+            transition:
+                0.25s;
         }
 
+
         input::placeholder {
+
             color: #475569;
         }
 
-        input:focus {
-            border-color: rgba(56, 189, 248, 0.7);
 
-            background: rgba(2, 8, 20, 0.95);
+        input:focus {
+
+            border-color:
+                rgba(56, 189, 248, 0.7);
+
+            background:
+                rgba(2, 8, 20, 0.95);
 
             box-shadow:
-                0 0 0 4px rgba(56, 189, 248, 0.08),
-                0 0 25px rgba(56, 189, 248, 0.08);
+
+                0 0 0 4px
+                rgba(56, 189, 248, 0.08),
+
+                0 0 25px
+                rgba(56, 189, 248, 0.08);
         }
 
 
-        /* ================= BUTTON ================= */
+        /* ======================================
+           ANALYZE BUTTON
+        ====================================== */
 
         .analyze-btn {
+
             width: 100%;
 
             margin-top: 23px;
 
             padding: 16px;
 
-            border: 1px solid rgba(125, 211, 252, 0.25);
+            border:
+                1px solid
+                rgba(125, 211, 252, 0.25);
 
             border-radius: 13px;
 
             background:
+
                 linear-gradient(
                     135deg,
                     #0284c7,
@@ -528,36 +845,39 @@
             cursor: pointer;
 
             box-shadow:
-                0 12px 35px rgba(37, 99, 235, 0.25);
+                0 12px 35px
+                rgba(37, 99, 235, 0.25);
 
-            transition: 0.25s;
+            transition:
+                0.25s;
         }
+
 
         .analyze-btn:hover {
-            transform: translateY(-2px);
+
+            transform:
+                translateY(-2px);
 
             box-shadow:
-                0 17px 40px rgba(37, 99, 235, 0.35);
+                0 17px 40px
+                rgba(37, 99, 235, 0.35);
         }
 
-        .analyze-btn:active {
-            transform: translateY(0);
-        }
 
         .analyze-btn:disabled {
+
             opacity: 0.65;
 
             cursor: wait;
         }
 
 
-        /* ================= ANALYSIS EMPTY ================= */
-
-        #result {
-            display: none;
-        }
+        /* ======================================
+           EMPTY ANALYSIS
+        ====================================== */
 
         .analysis-empty {
+
             min-height: 410px;
 
             display: flex;
@@ -571,8 +891,11 @@
             text-align: center;
         }
 
+
         .radar {
+
             width: 130px;
+
             height: 130px;
 
             border-radius: 50%;
@@ -585,9 +908,12 @@
 
             justify-content: center;
 
-            border: 1px solid rgba(56, 189, 248, 0.3);
+            border:
+                1px solid
+                rgba(56, 189, 248, 0.3);
 
             background:
+
                 radial-gradient(
                     circle,
                     rgba(14, 165, 233, 0.15),
@@ -595,7 +921,9 @@
                 );
         }
 
+
         .radar::before {
+
             content: "";
 
             position: absolute;
@@ -606,12 +934,17 @@
 
             border-radius: 50%;
 
-            border: 1px solid rgba(56, 189, 248, 0.15);
+            border:
+                1px solid
+                rgba(56, 189, 248, 0.15);
 
-            transform: scale(0.72);
+            transform:
+                scale(0.72);
         }
 
+
         .radar::after {
+
             content: "";
 
             position: absolute;
@@ -622,13 +955,17 @@
 
             border-radius: 50%;
 
-            background: var(--cyan);
+            background:
+                var(--cyan);
 
             box-shadow:
-                0 0 20px var(--cyan);
+                0 0 20px
+                var(--cyan);
         }
 
+
         .radar-line {
+
             position: absolute;
 
             width: 50%;
@@ -646,31 +983,44 @@
 
             top: 50%;
 
-            transform-origin: right;
+            transform-origin:
+                right;
 
             animation:
                 scan 3s linear infinite;
         }
 
+
         @keyframes scan {
 
             from {
-                transform: rotate(0deg);
+
+                transform:
+                    rotate(0deg);
+
             }
 
             to {
-                transform: rotate(360deg);
+
+                transform:
+                    rotate(360deg);
+
             }
         }
 
+
         .analysis-empty h2 {
+
             margin-top: 25px;
 
             font-size: 21px;
         }
 
+
         .analysis-empty p {
-            color: var(--muted);
+
+            color:
+                var(--muted);
 
             font-size: 13px;
 
@@ -682,16 +1032,29 @@
         }
 
 
-        /* ================= RESULT ================= */
+        /* ======================================
+           RESULT
+        ====================================== */
 
-        .result-header {
-            text-align: center;
+        #result {
 
-            padding: 10px 0 20px;
+            display: none;
         }
 
+
+        .result-header {
+
+            text-align: center;
+
+            padding:
+                10px 0 20px;
+        }
+
+
         .result-icon {
+
             width: 82px;
+
             height: 82px;
 
             margin: auto;
@@ -707,32 +1070,39 @@
             font-size: 37px;
 
             background:
+
                 radial-gradient(
                     circle,
                     rgba(56, 189, 248, 0.18),
                     rgba(56, 189, 248, 0.04)
                 );
 
-            border: 1px solid rgba(56, 189, 248, 0.25);
+            border:
+                1px solid
+                rgba(56, 189, 248, 0.25);
 
             box-shadow:
-                0 0 35px rgba(56, 189, 248, 0.12);
+                0 0 35px
+                rgba(56, 189, 248, 0.12);
         }
 
+
         .result-header h2 {
+
             margin-top: 14px;
 
             font-size: 29px;
-
-            letter-spacing: -0.5px;
         }
 
+
         .risk-badge {
+
             display: inline-block;
 
             margin-top: 9px;
 
-            padding: 6px 14px;
+            padding:
+                6px 14px;
 
             border-radius: 20px;
 
@@ -743,46 +1113,69 @@
             letter-spacing: 1px;
         }
 
+
         .risk-low {
+
             color: #6ee7b7;
 
-            background: rgba(16, 185, 129, 0.1);
+            background:
+                rgba(16, 185, 129, 0.1);
 
-            border: 1px solid rgba(52, 211, 153, 0.2);
+            border:
+                1px solid
+                rgba(52, 211, 153, 0.2);
         }
+
 
         .risk-medium {
+
             color: #fcd34d;
 
-            background: rgba(245, 158, 11, 0.1);
+            background:
+                rgba(245, 158, 11, 0.1);
 
-            border: 1px solid rgba(251, 191, 36, 0.2);
+            border:
+                1px solid
+                rgba(251, 191, 36, 0.2);
         }
+
 
         .risk-high {
+
             color: #fda4af;
 
-            background: rgba(244, 63, 94, 0.1);
+            background:
+                rgba(244, 63, 94, 0.1);
 
-            border: 1px solid rgba(251, 113, 133, 0.25);
+            border:
+                1px solid
+                rgba(251, 113, 133, 0.25);
         }
 
 
-        /* ================= CONFIDENCE ================= */
+        /* ======================================
+           CONFIDENCE
+        ====================================== */
 
         .confidence-box {
+
             margin-top: 12px;
 
             padding: 17px;
 
             border-radius: 15px;
 
-            background: rgba(2, 8, 20, 0.55);
+            background:
+                rgba(2, 8, 20, 0.55);
 
-            border: 1px solid rgba(148, 163, 184, 0.1);
+            border:
+                1px solid
+                rgba(148, 163, 184, 0.1);
         }
 
+
         .confidence-head {
+
             display: flex;
 
             justify-content: space-between;
@@ -791,28 +1184,36 @@
 
             font-size: 12px;
 
-            color: var(--muted);
+            color:
+                var(--muted);
         }
 
+
         .confidence-value {
+
             color: white;
 
             font-weight: 800;
         }
 
+
         .progress {
+
             height: 8px;
 
             width: 100%;
 
-            background: #0f172a;
+            background:
+                #0f172a;
 
             border-radius: 20px;
 
             overflow: hidden;
         }
 
+
         .progress-bar {
+
             height: 100%;
 
             width: 0%;
@@ -820,31 +1221,39 @@
             border-radius: 20px;
 
             background:
+
                 linear-gradient(
                     90deg,
                     #0284c7,
                     #22d3ee
                 );
 
-            transition: width 1s ease;
+            transition:
+                width 1s ease;
         }
 
 
-        /* ================= RECOMMENDATIONS ================= */
+        /* ======================================
+           RECOMMENDATIONS
+        ====================================== */
 
         .recommend-title {
+
             display: flex;
 
             align-items: center;
 
             gap: 8px;
 
-            margin: 22px 0 12px;
+            margin:
+                22px 0 12px;
 
             font-size: 15px;
         }
 
+
         .recommendation {
+
             display: flex;
 
             align-items: flex-start;
@@ -857,18 +1266,24 @@
 
             border-radius: 12px;
 
-            background: rgba(15, 23, 42, 0.55);
+            background:
+                rgba(15, 23, 42, 0.55);
 
-            border: 1px solid rgba(148, 163, 184, 0.1);
+            border:
+                1px solid
+                rgba(148, 163, 184, 0.1);
 
-            color: #cbd5e1;
+            color:
+                #cbd5e1;
 
             font-size: 12px;
 
             line-height: 1.55;
         }
 
+
         .check {
+
             width: 24px;
 
             height: 24px;
@@ -883,45 +1298,63 @@
 
             border-radius: 50%;
 
-            background: rgba(52, 211, 153, 0.1);
+            background:
+                rgba(52, 211, 153, 0.1);
 
-            color: #6ee7b7;
+            color:
+                #6ee7b7;
 
-            border: 1px solid rgba(52, 211, 153, 0.18);
+            border:
+                1px solid
+                rgba(52, 211, 153, 0.18);
 
             font-weight: bold;
         }
 
 
-        /* ================= HAZARDS ================= */
+        /* ======================================
+           HAZARD SECTION
+        ====================================== */
 
         .hazards {
+
             max-width: 1200px;
 
-            margin: 30px auto 50px;
+            margin:
+                30px auto 50px;
 
-            padding: 0 20px;
+            padding:
+                0 20px;
         }
 
+
         .section-heading {
+
             text-align: center;
 
             margin-bottom: 22px;
         }
 
+
         .section-heading h2 {
+
             font-size: 24px;
         }
 
+
         .section-heading p {
-            color: var(--muted);
+
+            color:
+                var(--muted);
 
             margin-top: 7px;
 
             font-size: 13px;
         }
 
+
         .hazard-grid {
+
             display: grid;
 
             grid-template-columns:
@@ -930,72 +1363,62 @@
             gap: 13px;
         }
 
+
         .hazard {
+
             position: relative;
 
-            padding: 20px 15px;
+            padding:
+                20px 15px;
 
             text-align: center;
 
             border-radius: 17px;
 
             background:
+
                 linear-gradient(
                     145deg,
                     rgba(15, 30, 50, 0.8),
                     rgba(5, 13, 25, 0.9)
                 );
 
-            border: 1px solid var(--border);
+            border:
+                1px solid var(--border);
 
-            transition: 0.25s;
+            transition:
+                0.25s;
 
             overflow: hidden;
         }
 
-        .hazard::before {
-            content: "";
-
-            position: absolute;
-
-            width: 70px;
-
-            height: 70px;
-
-            background:
-                rgba(56, 189, 248, 0.08);
-
-            filter: blur(25px);
-
-            top: -30px;
-
-            left: 50%;
-
-            transform:
-                translateX(-50%);
-        }
 
         .hazard:hover {
-            transform: translateY(-5px);
+
+            transform:
+                translateY(-5px);
 
             border-color:
                 rgba(56, 189, 248, 0.3);
-
-            box-shadow:
-                0 15px 35px rgba(0, 0, 0, 0.25);
         }
 
+
         .hazard-icon {
+
             font-size: 29px;
 
             margin-bottom: 10px;
         }
 
+
         .hazard strong {
+
             font-size: 13px;
         }
 
+
         .hazard small {
+
             display: block;
 
             color: #64748b;
@@ -1006,28 +1429,36 @@
         }
 
 
-        /* ================= TEAM SECTION ================= */
+        /* ======================================
+           ALPHA FORCE TEAM SECTION
+        ====================================== */
 
         .team-section {
+
             max-width: 1200px;
 
-            margin: 20px auto 60px;
+            margin:
+                20px auto 60px;
 
-            padding: 0 20px;
+            padding:
+                0 20px;
         }
 
+
         .team-card {
+
             position: relative;
 
             overflow: hidden;
 
-            padding: 30px;
+            padding: 32px;
 
             border-radius: 22px;
 
             text-align: center;
 
             background:
+
                 linear-gradient(
                     135deg,
                     rgba(14, 116, 144, 0.13),
@@ -1035,51 +1466,34 @@
                     rgba(30, 41, 59, 0.75)
                 );
 
-            border: 1px solid
+            border:
+                1px solid
                 rgba(56, 189, 248, 0.16);
 
             box-shadow:
-                0 20px 60px rgba(0, 0, 0, 0.25);
+                0 20px 60px
+                rgba(0, 0, 0, 0.25);
         }
 
-        .team-card::before {
-            content: "";
-
-            position: absolute;
-
-            width: 220px;
-
-            height: 220px;
-
-            border-radius: 50%;
-
-            background:
-                rgba(14, 165, 233, 0.08);
-
-            filter: blur(60px);
-
-            top: -130px;
-
-            left: 50%;
-
-            transform:
-                translateX(-50%);
-        }
 
         .team-badge {
+
             display: inline-block;
 
-            padding: 7px 15px;
+            padding:
+                7px 15px;
 
             border-radius: 20px;
 
             background:
                 rgba(56, 189, 248, 0.08);
 
-            border: 1px solid
+            border:
+                1px solid
                 rgba(56, 189, 248, 0.18);
 
-            color: #7dd3fc;
+            color:
+                #7dd3fc;
 
             font-size: 10px;
 
@@ -1090,32 +1504,34 @@
             margin-bottom: 13px;
         }
 
-        .team-card h2 {
-            position: relative;
 
-            font-size: 27px;
+        .team-card h2 {
+
+            font-size: 28px;
 
             letter-spacing: 1px;
 
             margin-bottom: 7px;
         }
 
-        .team-card > p {
-            position: relative;
 
-            color: var(--muted);
+        .team-card > p {
+
+            color:
+                var(--muted);
 
             font-size: 12px;
 
             margin-bottom: 25px;
         }
 
+
         .team-members {
-            position: relative;
 
             display: grid;
 
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns:
+                1fr 1fr;
 
             gap: 15px;
 
@@ -1124,19 +1540,37 @@
             margin: auto;
         }
 
+
         .member {
-            padding: 18px;
+
+            padding: 20px;
 
             border-radius: 15px;
 
             background:
                 rgba(2, 8, 20, 0.48);
 
-            border: 1px solid
+            border:
+                1px solid
                 rgba(148, 163, 184, 0.1);
+
+            transition:
+                0.25s;
         }
 
+
+        .member:hover {
+
+            transform:
+                translateY(-3px);
+
+            border-color:
+                rgba(56, 189, 248, 0.25);
+        }
+
+
         .member-role {
+
             color: #64748b;
 
             font-size: 10px;
@@ -1145,21 +1579,27 @@
 
             letter-spacing: 1px;
 
-            text-transform: uppercase;
+            text-transform:
+                uppercase;
 
             margin-bottom: 8px;
         }
 
+
         .member-name {
+
             color: #f8fafc;
 
-            font-size: 16px;
+            font-size: 17px;
 
             font-weight: 800;
         }
 
+
         .member-dept {
-            color: #38bdf8;
+
+            color:
+                #38bdf8;
 
             font-size: 11px;
 
@@ -1169,23 +1609,32 @@
         }
 
 
-        /* ================= FOOTER ================= */
+        /* ======================================
+           FOOTER
+        ====================================== */
 
         footer {
-            padding: 28px 20px;
+
+            padding:
+                28px 20px;
 
             text-align: center;
 
             border-top:
-                1px solid rgba(148, 163, 184, 0.08);
+                1px solid
+                rgba(148, 163, 184, 0.08);
 
-            color: #475569;
+            color:
+                #475569;
 
             font-size: 11px;
         }
 
-        footer .footer-team {
-            color: #38bdf8;
+
+        .footer-team {
+
+            color:
+                #38bdf8;
 
             font-size: 15px;
 
@@ -1196,83 +1645,155 @@
             margin-bottom: 9px;
         }
 
-        footer .footer-members {
-            color: #94a3b8;
+
+        .footer-members {
+
+            color:
+                #94a3b8;
 
             font-size: 11px;
 
             line-height: 1.8;
         }
 
-        footer .footer-members strong {
-            color: #cbd5e1;
+
+        .footer-members strong {
+
+            color:
+                #cbd5e1;
         }
 
-        footer .footer-system {
+
+        .footer-system {
+
             margin-top: 9px;
-
-            color: #475569;
-        }
-
-        footer .footer-system span {
-            color: #38bdf8;
         }
 
 
-        /* ================= RESPONSIVE ================= */
+        .footer-system span {
 
-        @media (max-width: 900px) {
-
-            .dashboard {
-                grid-template-columns: 1fr;
-            }
-
-            .hazard-grid {
-                grid-template-columns:
-                    repeat(3, 1fr);
-            }
-
+            color:
+                #38bdf8;
         }
 
-        @media (max-width: 600px) {
 
-            .navbar {
-                padding: 0 18px;
+        /* ======================================
+           RESPONSIVE
+        ====================================== */
+
+        @media (max-width: 1000px) {
+
+            .top-team-info {
+
+                position: static;
+
+                transform: none;
+
+                margin-left: auto;
+
+                margin-right: 15px;
+
+                padding:
+                    6px 12px;
             }
 
-            .status {
+
+            .top-team-members {
+
+                flex-direction: column;
+
+                gap: 2px;
+            }
+
+
+            .team-divider {
+
                 display: none;
             }
 
-            .hero {
-                padding-top: 50px;
-            }
 
-            .hero h1 {
-                letter-spacing: -2px;
-            }
+            .dashboard {
 
-            .input-grid {
                 grid-template-columns: 1fr;
             }
 
+
+            .hazard-grid {
+
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+        }
+
+
+        @media (max-width: 650px) {
+
+            .navbar {
+
+                height: 70px;
+
+                padding:
+                    0 18px;
+            }
+
+
+            .top-team-info {
+
+                display: none;
+            }
+
+
+            .status {
+
+                display: none;
+            }
+
+
+            .hero {
+
+                padding-top: 50px;
+            }
+
+
+            .hero h1 {
+
+                letter-spacing:
+                    -2px;
+            }
+
+
+            .input-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
             .glass-card {
+
                 padding: 20px;
             }
 
+
             .hazard-grid {
+
                 grid-template-columns:
                     1fr 1fr;
             }
 
+
             .team-members {
-                grid-template-columns: 1fr;
+
+                grid-template-columns:
+                    1fr;
             }
+
 
             .team-card {
-                padding: 23px 16px;
-            }
 
+                padding:
+                    25px 16px;
+            }
         }
 
     </style>
@@ -1283,7 +1804,9 @@
 <body>
 
 
-    <!-- BACKGROUND -->
+    <!-- ======================================
+         BACKGROUND
+    ====================================== -->
 
     <div class="background">
 
@@ -1298,14 +1821,21 @@
     </div>
 
 
-    <!-- NAVBAR -->
+
+    <!-- ======================================
+         NAVBAR
+    ====================================== -->
 
     <nav class="navbar">
 
+
         <div class="brand">
 
+
             <div class="brand-icon">
+
                 🛡️
+
             </div>
 
 
@@ -1320,27 +1850,101 @@
 
                 <div class="team-name">
 
-                    ALPHA FORCE TEAM
+                    ⚡ ALPHA FORCE TEAM
 
                 </div>
 
             </div>
 
+
         </div>
 
+
+
+        <!-- TOP TEAM DETAILS -->
+
+        <div class="top-team-info">
+
+
+            <div class="top-team-title">
+
+                ⚡ ALPHA FORCE TEAM
+
+            </div>
+
+
+            <div class="top-team-members">
+
+
+                <span>
+
+                    👤
+
+                    <b>
+                        Leader:
+                    </b>
+
+                    Mayank Singh
+
+                    <small>
+                        (Civil)
+                    </small>
+
+                </span>
+
+
+                <span class="team-divider">
+
+                    |
+
+                </span>
+
+
+                <span>
+
+                    🎓
+
+                    <b>
+                        Guider:
+                    </b>
+
+                    Vidit Raj
+
+                    <small>
+                        (IT)
+                    </small>
+
+                </span>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- STATUS -->
 
         <div class="status">
 
+
             <span class="status-dot"></span>
+
 
             AI SYSTEM ONLINE
 
+
         </div>
+
 
     </nav>
 
 
-    <!-- HERO -->
+
+    <!-- ======================================
+         HERO
+    ====================================== -->
 
     <section class="hero">
 
@@ -1351,38 +1955,53 @@
 
             &nbsp; • &nbsp;
 
-            NATURAL DISASTER INTELLIGENCE CENTER
+            NATURAL DISASTER
+
+            INTELLIGENCE CENTER
 
         </div>
+
 
 
         <h1>
 
             <span class="white">
+
                 Detect.
+
             </span>
+
 
             <br>
 
+
             <span class="blue">
+
                 Predict. Protect.
+
             </span>
 
         </h1>
 
 
+
         <p>
 
-            An AI-powered environmental risk analysis system
-            designed to identify potential disaster conditions
-            and provide immediate safety recommendations.
+            An AI-powered environmental risk analysis
+            system designed to identify potential
+            disaster conditions and provide immediate
+            safety recommendations.
 
         </p>
+
 
     </section>
 
 
-    <!-- MAIN DASHBOARD -->
+
+    <!-- ======================================
+         MAIN DASHBOARD
+    ====================================== -->
 
     <div class="container">
 
@@ -1397,23 +2016,32 @@
 
                 <div class="card-title">
 
+
                     <div class="card-title-icon">
+
                         🌐
+
                     </div>
 
+
                     <h2>
+
                         Environmental Inputs
+
                     </h2>
+
 
                 </div>
 
 
                 <p class="card-subtitle">
 
-                    Enter current environmental measurements
-                    for AI-powered risk analysis.
+                    Enter current environmental
+                    measurements for AI-powered
+                    risk analysis.
 
                 </p>
+
 
 
                 <form id="riskForm">
@@ -1431,7 +2059,9 @@
                                 Rainfall
 
                                 <span class="unit">
+
                                     mm
+
                                 </span>
 
                             </label>
@@ -1440,21 +2070,32 @@
                             <div class="input-wrapper">
 
                                 <span class="input-icon">
+
                                     🌧️
+
                                 </span>
 
 
                                 <input
+
                                     type="number"
+
                                     name="rainfall"
+
                                     min="0"
+
                                     step="0.1"
+
                                     placeholder="150"
-                                    required>
+
+                                    required
+
+                                >
 
                             </div>
 
                         </div>
+
 
 
                         <!-- TEMPERATURE -->
@@ -1466,7 +2107,9 @@
                                 Temperature
 
                                 <span class="unit">
+
                                     °C
+
                                 </span>
 
                             </label>
@@ -1475,20 +2118,30 @@
                             <div class="input-wrapper">
 
                                 <span class="input-icon">
+
                                     🌡️
+
                                 </span>
 
 
                                 <input
+
                                     type="number"
+
                                     name="temperature"
+
                                     step="0.1"
+
                                     placeholder="32"
-                                    required>
+
+                                    required
+
+                                >
 
                             </div>
 
                         </div>
+
 
 
                         <!-- WIND -->
@@ -1500,7 +2153,9 @@
                                 Wind Speed
 
                                 <span class="unit">
+
                                     km/h
+
                                 </span>
 
                             </label>
@@ -1509,21 +2164,32 @@
                             <div class="input-wrapper">
 
                                 <span class="input-icon">
+
                                     💨
+
                                 </span>
 
 
                                 <input
+
                                     type="number"
+
                                     name="wind_speed"
+
                                     min="0"
+
                                     step="0.1"
+
                                     placeholder="80"
-                                    required>
+
+                                    required
+
+                                >
 
                             </div>
 
                         </div>
+
 
 
                         <!-- WATER -->
@@ -1535,7 +2201,9 @@
                                 Water Level
 
                                 <span class="unit">
+
                                     meters
+
                                 </span>
 
                             </label>
@@ -1544,21 +2212,32 @@
                             <div class="input-wrapper">
 
                                 <span class="input-icon">
+
                                     🌊
+
                                 </span>
 
 
                                 <input
+
                                     type="number"
+
                                     name="water_level"
+
                                     min="0"
+
                                     step="0.1"
+
                                     placeholder="5"
-                                    required>
+
+                                    required
+
+                                >
 
                             </div>
 
                         </div>
+
 
 
                         <!-- EARTHQUAKE -->
@@ -1570,7 +2249,9 @@
                                 Earthquake
 
                                 <span class="unit">
+
                                     magnitude
+
                                 </span>
 
                             </label>
@@ -1579,22 +2260,34 @@
                             <div class="input-wrapper">
 
                                 <span class="input-icon">
+
                                     🌎
+
                                 </span>
 
 
                                 <input
+
                                     type="number"
+
                                     name="earthquake"
+
                                     min="0"
+
                                     max="10"
+
                                     step="0.1"
+
                                     placeholder="2.5"
-                                    required>
+
+                                    required
+
+                                >
 
                             </div>
 
                         </div>
+
 
 
                         <!-- SLOPE -->
@@ -1606,7 +2299,9 @@
                                 Terrain Slope
 
                                 <span class="unit">
+
                                     degrees
+
                                 </span>
 
                             </label>
@@ -1615,18 +2310,29 @@
                             <div class="input-wrapper">
 
                                 <span class="input-icon">
+
                                     ⛰️
+
                                 </span>
 
 
                                 <input
+
                                     type="number"
+
                                     name="slope"
+
                                     min="0"
+
                                     max="90"
+
                                     step="0.1"
+
                                     placeholder="25"
-                                    required>
+
+                                    required
+
+                                >
 
                             </div>
 
@@ -1636,9 +2342,13 @@
                     </div>
 
 
+
                     <button
+
                         class="analyze-btn"
+
                         id="detectBtn"
+
                         type="submit">
 
                         🔍 ANALYZE DISASTER RISK
@@ -1648,18 +2358,22 @@
 
                 </form>
 
+
             </div>
 
 
-            <!-- ANALYSIS CARD -->
+
+            <!-- RESULT CARD -->
 
             <div class="glass-card">
 
 
-                <!-- EMPTY STATE -->
+                <!-- EMPTY -->
 
                 <div
+
                     id="emptyState"
+
                     class="analysis-empty">
 
 
@@ -1671,19 +2385,24 @@
 
 
                     <h2>
+
                         AI Analysis Ready
+
                     </h2>
 
 
                     <p>
 
-                        Enter environmental data and start
-                        the analysis to identify potential
-                        disaster risks.
+                        Enter environmental data
+                        and start the analysis to
+                        identify potential disaster
+                        risks.
 
                     </p>
 
+
                 </div>
+
 
 
                 <!-- RESULT -->
@@ -1695,7 +2414,9 @@
 
 
                         <div
+
                             class="result-icon"
+
                             id="resultIcon">
 
                             🤖
@@ -1704,19 +2425,25 @@
 
 
                         <h2 id="risk">
+
                             Risk
+
                         </h2>
 
 
                         <span
+
                             id="riskLevel"
+
                             class="risk-badge">
 
                             RISK
 
                         </span>
 
+
                     </div>
+
 
 
                     <!-- CONFIDENCE -->
@@ -1726,33 +2453,45 @@
 
                         <div class="confidence-head">
 
+
                             <span>
+
                                 AI Prediction Confidence
+
                             </span>
 
 
                             <span
+
                                 id="probability"
+
                                 class="confidence-value">
 
                                 0%
 
                             </span>
 
+
                         </div>
 
 
                         <div class="progress">
 
+
                             <div
+
                                 id="progressBar"
+
                                 class="progress-bar">
 
                             </div>
 
+
                         </div>
 
+
                     </div>
+
 
 
                     <!-- RECOMMENDATIONS -->
@@ -1764,28 +2503,40 @@
                     </h3>
 
 
-                    <div id="recommendations"></div>
+                    <div
+
+                        id="recommendations">
+
+                    </div>
 
 
                 </div>
+
 
             </div>
 
 
         </div>
 
+
     </div>
 
 
-    <!-- HAZARD INTELLIGENCE -->
+
+    <!-- ======================================
+         HAZARD INTELLIGENCE
+    ====================================== -->
 
     <section class="hazards">
 
 
         <div class="section-heading">
 
+
             <h2>
+
                 Hazard Intelligence
+
             </h2>
 
 
@@ -1796,7 +2547,9 @@
 
             </p>
 
+
         </div>
+
 
 
         <div class="hazard-grid">
@@ -1805,83 +2558,117 @@
             <div class="hazard">
 
                 <div class="hazard-icon">
+
                     🌊
+
                 </div>
 
                 <strong>
+
                     FLOOD
+
                 </strong>
 
                 <small>
+
                     Rainfall + Water
+
                 </small>
 
             </div>
 
 
+
             <div class="hazard">
 
                 <div class="hazard-icon">
+
                     🌎
+
                 </div>
 
                 <strong>
+
                     EARTHQUAKE
+
                 </strong>
 
                 <small>
+
                     Seismic magnitude
+
                 </small>
 
             </div>
 
 
+
             <div class="hazard">
 
                 <div class="hazard-icon">
+
                     🌀
+
                 </div>
 
                 <strong>
+
                     CYCLONE
+
                 </strong>
 
                 <small>
+
                     Wind conditions
+
                 </small>
 
             </div>
 
 
+
             <div class="hazard">
 
                 <div class="hazard-icon">
+
                     ⛰️
+
                 </div>
 
                 <strong>
+
                     LANDSLIDE
+
                 </strong>
 
                 <small>
+
                     Rain + terrain
+
                 </small>
 
             </div>
 
 
+
             <div class="hazard">
 
                 <div class="hazard-icon">
+
                     🔥
+
                 </div>
 
                 <strong>
+
                     HEATWAVE
+
                 </strong>
 
                 <small>
+
                     Temperature
+
                 </small>
 
             </div>
@@ -1889,10 +2676,14 @@
 
         </div>
 
+
     </section>
 
 
-    <!-- ALPHA FORCE TEAM -->
+
+    <!-- ======================================
+         ALPHA FORCE TEAM
+    ====================================== -->
 
     <section class="team-section">
 
@@ -1930,6 +2721,7 @@
 
                 <div class="member">
 
+
                     <div class="member-role">
 
                         Team Leader
@@ -1950,12 +2742,15 @@
 
                     </div>
 
+
                 </div>
+
 
 
                 <!-- GUIDER -->
 
                 <div class="member">
+
 
                     <div class="member-role">
 
@@ -1977,17 +2772,23 @@
 
                     </div>
 
+
                 </div>
 
 
             </div>
 
+
         </div>
+
 
     </section>
 
 
-    <!-- FOOTER -->
+
+    <!-- ======================================
+         FOOTER
+    ====================================== -->
 
     <footer>
 
@@ -2001,19 +2802,27 @@
 
         <div class="footer-members">
 
+
             <strong>
+
                 Leader:
+
             </strong>
 
             Mayank Singh (Civil)
 
+
             &nbsp;&nbsp; • &nbsp;&nbsp;
 
+
             <strong>
+
                 Guider:
+
             </strong>
 
             Vidit Raj (IT)
+
 
         </div>
 
@@ -2023,7 +2832,9 @@
             DisasterGuard AI •
 
             <span>
+
                 Risk Intelligence System
+
             </span>
 
         </div>
@@ -2032,21 +2843,30 @@
     </footer>
 
 
-    <!-- JAVASCRIPT -->
+
+    <!-- ======================================
+         JAVASCRIPT
+    ====================================== -->
 
     <script>
 
+
         const form =
-            document.getElementById("riskForm");
+            document.getElementById(
+                "riskForm"
+            );
 
 
         const button =
-            document.getElementById("detectBtn");
+            document.getElementById(
+                "detectBtn"
+            );
 
 
         form.addEventListener(
             "submit",
             async function(event) {
+
 
                 event.preventDefault();
 
@@ -2127,8 +2947,9 @@
                     /* RISK LEVEL */
 
                     const level =
-                        data.risk_level
-                            .toLowerCase();
+                        String(
+                            data.risk_level || ""
+                        ).toLowerCase();
 
 
                     const levelElement =
@@ -2147,7 +2968,9 @@
 
                         levelElement
                             .classList
-                            .add("risk-low");
+                            .add(
+                                "risk-low"
+                            );
 
                     }
 
@@ -2157,7 +2980,9 @@
 
                         levelElement
                             .classList
-                            .add("risk-medium");
+                            .add(
+                                "risk-medium"
+                            );
 
                     }
 
@@ -2165,7 +2990,9 @@
 
                         levelElement
                             .classList
-                            .add("risk-high");
+                            .add(
+                                "risk-high"
+                            );
 
                     }
 
@@ -2175,7 +3002,7 @@
                         " RISK";
 
 
-                    /* PROGRESS BAR */
+                    /* PROGRESS */
 
                     document
                         .getElementById(
@@ -2185,7 +3012,7 @@
                         data.probability + "%";
 
 
-                    /* DISASTER ICON */
+                    /* ICON */
 
                     const icons = {
 
@@ -2213,59 +3040,96 @@
                         || "🚨";
 
 
-                    /* SAFETY RECOMMENDATIONS */
+                    /* RECOMMENDATIONS */
 
                     const recommendationBox =
-                        document.getElementById(
-                            "recommendations"
-                        );
+                        document
+                            .getElementById(
+                                "recommendations"
+                            );
 
 
                     recommendationBox.innerHTML =
                         "";
 
 
-                    data.recommendations
-                        .forEach(
-                            function(item) {
+                    const recommendations =
+                        Array.isArray(
+                            data.recommendations
+                        )
+                        ? data.recommendations
+                        : [];
 
 
-                                const div =
-                                    document
+                    recommendations.forEach(
+                        function(item) {
+
+
+                            const div =
+                                document
                                     .createElement(
                                         "div"
                                     );
 
 
-                                div.className =
-                                    "recommendation";
+                            div.className =
+                                "recommendation";
 
 
-                                div.innerHTML = `
-
-                                    <span class="check">
-                                        ✓
-                                    </span>
-
-                                    <span>
-                                        ${item}
-                                    </span>
-
-                                `;
-
-
-                                recommendationBox
-                                    .appendChild(
-                                        div
+                            const check =
+                                document
+                                    .createElement(
+                                        "span"
                                     );
 
-                            }
-                        );
+
+                            check.className =
+                                "check";
+
+
+                            check.innerText =
+                                "✓";
+
+
+                            const text =
+                                document
+                                    .createElement(
+                                        "span"
+                                    );
+
+
+                            text.innerText =
+                                item;
+
+
+                            div.appendChild(
+                                check
+                            );
+
+
+                            div.appendChild(
+                                text
+                            );
+
+
+                            recommendationBox
+                                .appendChild(
+                                    div
+                                );
+
+                        }
+                    );
+
 
                 }
 
 
-                catch(error) {
+                catch (error) {
+
+
+                    console.error(
+                        error
+                    );
 
 
                     alert(
@@ -2288,9 +3152,10 @@
 
                 }
 
-            }
 
+            }
         );
+
 
     </script>
 
