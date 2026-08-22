@@ -2,278 +2,1824 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>AI Disaster Risk Detection</title>
+    <title>DisasterGuard AI | Risk Intelligence Center</title>
 
     <style>
 
-        body {
+        * {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background: #eef2f7;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .header {
-            background: #172554;
-            color: white;
-            padding: 25px;
+        :root {
+            --bg: #050b16;
+            --panel: rgba(10, 20, 36, 0.78);
+            --panel-light: rgba(18, 31, 52, 0.75);
+            --border: rgba(148, 163, 184, 0.16);
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --blue: #38bdf8;
+            --cyan: #22d3ee;
+            --green: #34d399;
+            --yellow: #fbbf24;
+            --red: #fb7185;
+        }
+
+        body {
+            font-family: Inter, "Segoe UI", Arial, sans-serif;
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 15% 15%,
+                    rgba(14, 116, 144, 0.28),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 85% 20%,
+                    rgba(37, 99, 235, 0.22),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 50% 100%,
+                    rgba(127, 29, 29, 0.18),
+                    transparent 35%
+                ),
+                #050b16;
+        }
+
+        /* ================= BACKGROUND ================= */
+
+        .background {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .grid-bg {
+            position: absolute;
+            inset: 0;
+
+            background-image:
+                linear-gradient(
+                    rgba(56, 189, 248, 0.035) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(56, 189, 248, 0.035) 1px,
+                    transparent 1px
+                );
+
+            background-size: 50px 50px;
+
+            mask-image: linear-gradient(
+                to bottom,
+                black,
+                transparent
+            );
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.25;
+            animation: float 10s ease-in-out infinite;
+        }
+
+        .orb-one {
+            width: 300px;
+            height: 300px;
+            background: #0369a1;
+            left: -100px;
+            top: 200px;
+        }
+
+        .orb-two {
+            width: 350px;
+            height: 350px;
+            background: #7f1d1d;
+            right: -120px;
+            top: 400px;
+            animation-delay: 2s;
+        }
+
+        .orb-three {
+            width: 250px;
+            height: 250px;
+            background: #164e63;
+            left: 40%;
+            bottom: -100px;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-35px);
+            }
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            height: 76px;
+            padding: 0 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            background: rgba(3, 10, 20, 0.72);
+            backdrop-filter: blur(18px);
+
+            border-bottom: 1px solid var(--border);
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .brand-icon {
+            width: 43px;
+            height: 43px;
+
+            border-radius: 13px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0ea5e9,
+                    #0369a1
+                );
+
+            box-shadow:
+                0 0 25px rgba(14, 165, 233, 0.35);
+
+            font-size: 22px;
+        }
+
+        .brand-name {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-name span {
+            color: var(--cyan);
+        }
+
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+
+            padding: 8px 14px;
+
+            border: 1px solid rgba(52, 211, 153, 0.25);
+            background: rgba(16, 185, 129, 0.08);
+
+            border-radius: 30px;
+
+            color: #6ee7b7;
+
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: var(--green);
+
+            box-shadow:
+                0 0 12px var(--green);
+
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.45;
+                transform: scale(0.75);
+            }
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            max-width: 1200px;
+            margin: auto;
+            padding: 70px 20px 40px;
             text-align: center;
         }
 
+        .system-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 8px 15px;
+
+            border-radius: 30px;
+
+            background: rgba(14, 165, 233, 0.08);
+
+            border: 1px solid rgba(56, 189, 248, 0.2);
+
+            color: #7dd3fc;
+
+            font-size: 11px;
+            font-weight: 800;
+
+            letter-spacing: 1.2px;
+
+            margin-bottom: 22px;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 7vw, 76px);
+
+            line-height: 0.98;
+
+            letter-spacing: -3px;
+
+            margin-bottom: 24px;
+        }
+
+        .hero h1 .white {
+            color: white;
+        }
+
+        .hero h1 .blue {
+            background:
+                linear-gradient(
+                    90deg,
+                    #38bdf8,
+                    #22d3ee,
+                    #60a5fa
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: auto;
+
+            color: var(--muted);
+
+            line-height: 1.7;
+
+            font-size: 16px;
+        }
+
+        /* ================= DASHBOARD ================= */
+
         .container {
-            max-width: 900px;
-            margin: 30px auto;
+            max-width: 1200px;
+            margin: auto;
             padding: 20px;
         }
 
-        .card {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-
-        .grid {
+        .dashboard {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            gap: 22px;
         }
 
-        label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
+        .glass-card {
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(15, 30, 50, 0.82),
+                    rgba(5, 13, 25, 0.88)
+                );
+
+            border: 1px solid var(--border);
+
+            border-radius: 24px;
+
+            padding: 28px;
+
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.3);
+
+            backdrop-filter: blur(20px);
+        }
+
+        .card-title {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+
+            margin-bottom: 7px;
+        }
+
+        .card-title-icon {
+            width: 40px;
+            height: 40px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 11px;
+
+            background: rgba(56, 189, 248, 0.1);
+
+            border: 1px solid rgba(56, 189, 248, 0.15);
+
+            font-size: 19px;
+        }
+
+        .card-title h2 {
+            font-size: 20px;
+        }
+
+        .card-subtitle {
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        /* ================= INPUTS ================= */
+
+        .input-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 17px;
+        }
+
+        .input-group label {
+            display: flex;
+            justify-content: space-between;
+
+            margin-bottom: 8px;
+
+            color: #cbd5e1;
+
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .unit {
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 13px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            font-size: 16px;
+
+            z-index: 2;
         }
 
         input {
             width: 100%;
-            padding: 12px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-        }
 
-        button {
-            width: 100%;
-            padding: 15px;
-            margin-top: 20px;
-            border: none;
-            border-radius: 8px;
-            background: #2563eb;
+            padding: 14px 12px 14px 42px;
+
+            border-radius: 12px;
+
+            border: 1px solid rgba(148, 163, 184, 0.16);
+
+            outline: none;
+
+            background: rgba(2, 8, 20, 0.7);
+
             color: white;
-            font-size: 18px;
-            cursor: pointer;
+
+            font-size: 14px;
+
+            transition: 0.25s;
         }
 
-        button:hover {
-            background: #1d4ed8;
+        input::placeholder {
+            color: #475569;
         }
+
+        input:focus {
+            border-color: rgba(56, 189, 248, 0.7);
+
+            background: rgba(2, 8, 20, 0.95);
+
+            box-shadow:
+                0 0 0 4px rgba(56, 189, 248, 0.08),
+                0 0 25px rgba(56, 189, 248, 0.08);
+        }
+
+        /* ================= BUTTON ================= */
+
+        .analyze-btn {
+            width: 100%;
+
+            margin-top: 23px;
+
+            padding: 16px;
+
+            border: 1px solid rgba(125, 211, 252, 0.25);
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0284c7,
+                    #2563eb
+                );
+
+            color: white;
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+            letter-spacing: 0.3px;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 12px 35px rgba(37, 99, 235, 0.25);
+
+            transition: 0.25s;
+        }
+
+        .analyze-btn:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 17px 40px rgba(37, 99, 235, 0.35);
+        }
+
+        .analyze-btn:active {
+            transform: translateY(0);
+        }
+
+        .analyze-btn:disabled {
+            opacity: 0.65;
+            cursor: wait;
+        }
+
+        /* ================= ANALYSIS ================= */
 
         #result {
             display: none;
-            margin-top: 25px;
         }
 
-        .risk {
-            font-size: 28px;
-            font-weight: bold;
+        .analysis-empty {
+            min-height: 410px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+        }
+
+        .radar {
+            width: 130px;
+            height: 130px;
+
+            border-radius: 50%;
+
+            position: relative;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border: 1px solid rgba(56, 189, 248, 0.3);
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(14, 165, 233, 0.15),
+                    transparent 65%
+                );
+        }
+
+        .radar::before {
+            content: "";
+
+            position: absolute;
+
+            width: 100%;
+            height: 100%;
+
+            border-radius: 50%;
+
+            border: 1px solid rgba(56, 189, 248, 0.15);
+
+            transform: scale(0.72);
+        }
+
+        .radar::after {
+            content: "";
+
+            position: absolute;
+
+            width: 8px;
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: var(--cyan);
+
+            box-shadow:
+                0 0 20px var(--cyan);
+        }
+
+        .radar-line {
+            position: absolute;
+
+            width: 50%;
+            height: 1px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    #22d3ee
+                );
+
+            right: 50%;
+            top: 50%;
+
+            transform-origin: right;
+
+            animation: scan 3s linear infinite;
+        }
+
+        @keyframes scan {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .analysis-empty h2 {
+            margin-top: 25px;
+
+            font-size: 21px;
+        }
+
+        .analysis-empty p {
+            color: var(--muted);
+
+            font-size: 13px;
+
+            margin-top: 8px;
+
+            max-width: 350px;
+
+            line-height: 1.6;
+        }
+
+        /* ================= RESULT ================= */
+
+        .result-header {
+            text-align: center;
+
+            padding: 10px 0 20px;
+        }
+
+        .result-icon {
+            width: 82px;
+            height: 82px;
+
+            margin: auto;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 37px;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(56, 189, 248, 0.18),
+                    rgba(56, 189, 248, 0.04)
+                );
+
+            border: 1px solid rgba(56, 189, 248, 0.25);
+
+            box-shadow:
+                0 0 35px rgba(56, 189, 248, 0.12);
+        }
+
+        .result-header h2 {
+            margin-top: 14px;
+
+            font-size: 29px;
+
+            letter-spacing: -0.5px;
+        }
+
+        .risk-badge {
+            display: inline-block;
+
+            margin-top: 9px;
+
+            padding: 6px 14px;
+
+            border-radius: 20px;
+
+            font-size: 10px;
+
+            font-weight: 900;
+
+            letter-spacing: 1px;
+        }
+
+        .risk-low {
+            color: #6ee7b7;
+
+            background: rgba(16, 185, 129, 0.1);
+
+            border: 1px solid rgba(52, 211, 153, 0.2);
+        }
+
+        .risk-medium {
+            color: #fcd34d;
+
+            background: rgba(245, 158, 11, 0.1);
+
+            border: 1px solid rgba(251, 191, 36, 0.2);
+        }
+
+        .risk-high {
+            color: #fda4af;
+
+            background: rgba(244, 63, 94, 0.1);
+
+            border: 1px solid rgba(251, 113, 133, 0.25);
+        }
+
+        /* ================= CONFIDENCE ================= */
+
+        .confidence-box {
+            margin-top: 12px;
+
+            padding: 17px;
+
+            border-radius: 15px;
+
+            background: rgba(2, 8, 20, 0.55);
+
+            border: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .confidence-head {
+            display: flex;
+
+            justify-content: space-between;
+
             margin-bottom: 10px;
+
+            font-size: 12px;
+
+            color: var(--muted);
+        }
+
+        .confidence-value {
+            color: white;
+
+            font-weight: 800;
+        }
+
+        .progress {
+            height: 8px;
+
+            width: 100%;
+
+            background: #0f172a;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+
+            width: 0%;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #0284c7,
+                    #22d3ee
+                );
+
+            transition: width 1s ease;
+        }
+
+        /* ================= RECOMMENDATIONS ================= */
+
+        .recommend-title {
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            margin: 22px 0 12px;
+
+            font-size: 15px;
         }
 
         .recommendation {
-            background: #f1f5f9;
-            padding: 15px;
-            margin: 8px 0;
-            border-radius: 8px;
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 11px;
+
+            padding: 12px;
+
+            margin-bottom: 8px;
+
+            border-radius: 12px;
+
+            background: rgba(15, 23, 42, 0.55);
+
+            border: 1px solid rgba(148, 163, 184, 0.1);
+
+            color: #cbd5e1;
+
+            font-size: 12px;
+
+            line-height: 1.55;
         }
 
-        @media(max-width: 650px) {
-            .grid {
+        .check {
+            width: 24px;
+            height: 24px;
+
+            flex-shrink: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: rgba(52, 211, 153, 0.1);
+
+            color: #6ee7b7;
+
+            border: 1px solid rgba(52, 211, 153, 0.18);
+
+            font-weight: bold;
+        }
+
+        /* ================= HAZARD SECTION ================= */
+
+        .hazards {
+            max-width: 1200px;
+
+            margin: 30px auto 60px;
+
+            padding: 0 20px;
+        }
+
+        .section-heading {
+            text-align: center;
+
+            margin-bottom: 22px;
+        }
+
+        .section-heading h2 {
+            font-size: 24px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+
+            margin-top: 7px;
+
+            font-size: 13px;
+        }
+
+        .hazard-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(5, 1fr);
+
+            gap: 13px;
+        }
+
+        .hazard {
+            position: relative;
+
+            padding: 20px 15px;
+
+            text-align: center;
+
+            border-radius: 17px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(15, 30, 50, 0.8),
+                    rgba(5, 13, 25, 0.9)
+                );
+
+            border: 1px solid var(--border);
+
+            transition: 0.25s;
+
+            overflow: hidden;
+        }
+
+        .hazard::before {
+            content: "";
+
+            position: absolute;
+
+            width: 70px;
+            height: 70px;
+
+            background: rgba(56, 189, 248, 0.08);
+
+            filter: blur(25px);
+
+            top: -30px;
+            left: 50%;
+
+            transform: translateX(-50%);
+        }
+
+        .hazard:hover {
+            transform: translateY(-5px);
+
+            border-color:
+                rgba(56, 189, 248, 0.3);
+
+            box-shadow:
+                0 15px 35px rgba(0, 0, 0, 0.25);
+        }
+
+        .hazard-icon {
+            font-size: 29px;
+
+            margin-bottom: 10px;
+        }
+
+        .hazard strong {
+            font-size: 13px;
+        }
+
+        .hazard small {
+            display: block;
+
+            color: #64748b;
+
+            font-size: 10px;
+
+            margin-top: 5px;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            padding: 25px;
+
+            text-align: center;
+
+            border-top:
+                1px solid rgba(148, 163, 184, 0.08);
+
+            color: #475569;
+
+            font-size: 11px;
+        }
+
+        footer span {
+            color: #38bdf8;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 900px) {
+
+            .dashboard {
                 grid-template-columns: 1fr;
             }
+
+            .hazard-grid {
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                padding: 0 18px;
+            }
+
+            .status {
+                display: none;
+            }
+
+            .hero {
+                padding-top: 50px;
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .input-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .glass-card {
+                padding: 20px;
+            }
+
+            .hazard-grid {
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
         }
 
     </style>
 
 </head>
 
+
 <body>
 
-<div class="header">
 
-    <h1>🌍 AI Natural Disaster Risk Detector</h1>
+    <!-- BACKGROUND EFFECTS -->
 
-    <p>Machine Learning Based Risk Analysis & Safety Recommendations</p>
+    <div class="background">
 
-</div>
+        <div class="grid-bg"></div>
+
+        <div class="orb orb-one"></div>
+
+        <div class="orb orb-two"></div>
+
+        <div class="orb orb-three"></div>
+
+    </div>
 
 
-<div class="container">
+    <!-- NAVBAR -->
 
-    <div class="card">
+    <nav class="navbar">
 
-        <h2>Enter Environmental Data</h2>
+        <div class="brand">
 
-        <form id="riskForm">
+            <div class="brand-icon">
+                🛡️
+            </div>
 
-            <div class="grid">
+            <div class="brand-name">
+                Disaster<span>Guard</span> AI
+            </div>
 
-                <div>
-                    <label>Rainfall (mm)</label>
-                    <input
-                        type="number"
-                        name="rainfall"
-                        step="0.1"
-                        required>
+        </div>
+
+
+        <div class="status">
+
+            <span class="status-dot"></span>
+
+            AI SYSTEM ONLINE
+
+        </div>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="system-label">
+
+            ◉ NATURAL DISASTER INTELLIGENCE CENTER
+
+        </div>
+
+
+        <h1>
+
+            <span class="white">
+                Detect.
+            </span>
+
+            <br>
+
+            <span class="blue">
+                Predict. Protect.
+            </span>
+
+        </h1>
+
+
+        <p>
+
+            An AI-powered environmental risk analysis system
+            designed to identify potential disaster conditions
+            and provide immediate safety recommendations.
+
+        </p>
+
+    </section>
+
+
+    <!-- DASHBOARD -->
+
+    <div class="container">
+
+        <div class="dashboard">
+
+
+            <!-- INPUT CARD -->
+
+            <div class="glass-card">
+
+                <div class="card-title">
+
+                    <div class="card-title-icon">
+                        🌐
+                    </div>
+
+                    <h2>
+                        Environmental Inputs
+                    </h2>
+
                 </div>
 
-                <div>
-                    <label>Temperature (°C)</label>
-                    <input
-                        type="number"
-                        name="temperature"
-                        step="0.1"
-                        required>
-                </div>
 
-                <div>
-                    <label>Wind Speed (km/h)</label>
-                    <input
-                        type="number"
-                        name="wind_speed"
-                        step="0.1"
-                        required>
-                </div>
+                <p class="card-subtitle">
 
-                <div>
-                    <label>Water Level (m)</label>
-                    <input
-                        type="number"
-                        name="water_level"
-                        step="0.1"
-                        required>
-                </div>
+                    Enter current environmental measurements
+                    for AI-powered risk analysis.
 
-                <div>
-                    <label>Earthquake Magnitude</label>
-                    <input
-                        type="number"
-                        name="earthquake"
-                        min="0"
-                        max="10"
-                        step="0.1"
-                        required>
-                </div>
+                </p>
 
-                <div>
-                    <label>Slope (degrees)</label>
-                    <input
-                        type="number"
-                        name="slope"
-                        min="0"
-                        max="90"
-                        step="0.1"
-                        required>
-                </div>
+
+                <form id="riskForm">
+
+
+                    <div class="input-grid">
+
+
+                        <div class="input-group">
+
+                            <label>
+
+                                Rainfall
+
+                                <span class="unit">
+                                    mm
+                                </span>
+
+                            </label>
+
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    🌧️
+                                </span>
+
+                                <input
+                                    type="number"
+                                    name="rainfall"
+                                    min="0"
+                                    step="0.1"
+                                    placeholder="150"
+                                    required>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>
+
+                                Temperature
+
+                                <span class="unit">
+                                    °C
+                                </span>
+
+                            </label>
+
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    🌡️
+                                </span>
+
+                                <input
+                                    type="number"
+                                    name="temperature"
+                                    step="0.1"
+                                    placeholder="32"
+                                    required>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>
+
+                                Wind Speed
+
+                                <span class="unit">
+                                    km/h
+                                </span>
+
+                            </label>
+
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    💨
+                                </span>
+
+                                <input
+                                    type="number"
+                                    name="wind_speed"
+                                    min="0"
+                                    step="0.1"
+                                    placeholder="80"
+                                    required>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>
+
+                                Water Level
+
+                                <span class="unit">
+                                    meters
+                                </span>
+
+                            </label>
+
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    🌊
+                                </span>
+
+                                <input
+                                    type="number"
+                                    name="water_level"
+                                    min="0"
+                                    step="0.1"
+                                    placeholder="5"
+                                    required>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>
+
+                                Earthquake
+
+                                <span class="unit">
+                                    magnitude
+                                </span>
+
+                            </label>
+
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    🌎
+                                </span>
+
+                                <input
+                                    type="number"
+                                    name="earthquake"
+                                    min="0"
+                                    max="10"
+                                    step="0.1"
+                                    placeholder="2.5"
+                                    required>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>
+
+                                Terrain Slope
+
+                                <span class="unit">
+                                    degrees
+                                </span>
+
+                            </label>
+
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    ⛰️
+                                </span>
+
+                                <input
+                                    type="number"
+                                    name="slope"
+                                    min="0"
+                                    max="90"
+                                    step="0.1"
+                                    placeholder="25"
+                                    required>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        class="analyze-btn"
+                        id="detectBtn"
+                        type="submit">
+
+                        🔍 ANALYZE DISASTER RISK
+
+                    </button>
+
+
+                </form>
 
             </div>
 
-            <button type="submit">
-                🔍 Detect Disaster Risk
-            </button>
 
-        </form>
+            <!-- ANALYSIS CARD -->
+
+            <div class="glass-card">
 
 
-        <div id="result">
+                <!-- EMPTY STATE -->
 
-            <hr>
+                <div
+                    id="emptyState"
+                    class="analysis-empty">
 
-            <h2>AI Analysis</h2>
+                    <div class="radar">
 
-            <div id="risk" class="risk"></div>
+                        <div class="radar-line"></div>
 
-            <p>
-                AI Confidence:
-                <strong id="probability"></strong>
-            </p>
+                    </div>
 
-            <h3>Safety Recommendations</h3>
 
-            <div id="recommendations"></div>
+                    <h2>
+                        AI Analysis Ready
+                    </h2>
+
+
+                    <p>
+
+                        Enter environmental data and start
+                        the analysis to identify potential
+                        disaster risks.
+
+                    </p>
+
+                </div>
+
+
+                <!-- RESULT -->
+
+                <div id="result">
+
+
+                    <div class="result-header">
+
+
+                        <div
+                            class="result-icon"
+                            id="resultIcon">
+
+                            🤖
+
+                        </div>
+
+
+                        <h2 id="risk">
+                            Risk
+                        </h2>
+
+
+                        <span
+                            id="riskLevel"
+                            class="risk-badge">
+
+                            RISK
+
+                        </span>
+
+                    </div>
+
+
+                    <!-- CONFIDENCE -->
+
+                    <div class="confidence-box">
+
+                        <div class="confidence-head">
+
+                            <span>
+                                AI Prediction Confidence
+                            </span>
+
+                            <span
+                                id="probability"
+                                class="confidence-value">
+
+                                0%
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="progress">
+
+                            <div
+                                id="progressBar"
+                                class="progress-bar">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- RECOMMENDATIONS -->
+
+                    <h3 class="recommend-title">
+
+                        🛡️ Recommended Safety Actions
+
+                    </h3>
+
+
+                    <div id="recommendations"></div>
+
+
+                </div>
+
+            </div>
 
         </div>
 
     </div>
 
-</div>
+
+    <!-- DETECTABLE HAZARDS -->
+
+    <section class="hazards">
 
 
-<script>
+        <div class="section-heading">
 
-document
-.getElementById("riskForm")
-.addEventListener("submit", async function(event) {
+            <h2>
+                Hazard Intelligence
+            </h2>
 
-    event.preventDefault();
+            <p>
+                AI analysis categories supported by the system
+            </p>
 
-    const formData = new FormData(this);
+        </div>
 
-    const response = await fetch(
-        "/predict",
-        {
-            method: "POST",
-            body: formData
-        }
-    );
 
-    const data = await response.json();
+        <div class="hazard-grid">
 
-    const result = document.getElementById("result");
 
-    result.style.display = "block";
+            <div class="hazard">
 
-    if (data.error) {
+                <div class="hazard-icon">
+                    🌊
+                </div>
 
-        document.getElementById("risk").innerText =
-            "Error: " + data.error;
+                <strong>
+                    FLOOD
+                </strong>
 
-        return;
+                <small>
+                    Rainfall + Water
+                </small>
 
-    }
+            </div>
 
-    document.getElementById("risk").innerText =
-        "🚨 " + data.risk +
-        " — " + data.risk_level + " RISK";
 
-    document.getElementById("probability").innerText =
-        data.probability + "%";
+            <div class="hazard">
 
-    const recommendations =
-        document.getElementById("recommendations");
+                <div class="hazard-icon">
+                    🌎
+                </div>
 
-    recommendations.innerHTML = "";
+                <strong>
+                    EARTHQUAKE
+                </strong>
 
-    data.recommendations.forEach(function(item) {
+                <small>
+                    Seismic magnitude
+                </small>
 
-        const div = document.createElement("div");
+            </div>
 
-        div.className = "recommendation";
 
-        div.innerText = "✅ " + item;
+            <div class="hazard">
 
-        recommendations.appendChild(div);
+                <div class="hazard-icon">
+                    🌀
+                </div>
 
-    });
+                <strong>
+                    CYCLONE
+                </strong>
 
-});
+                <small>
+                    Wind conditions
+                </small>
 
-</script>
+            </div>
+
+
+            <div class="hazard">
+
+                <div class="hazard-icon">
+                    ⛰️
+                </div>
+
+                <strong>
+                    LANDSLIDE
+                </strong>
+
+                <small>
+                    Rain + terrain
+                </small>
+
+            </div>
+
+
+            <div class="hazard">
+
+                <div class="hazard-icon">
+                    🔥
+                </div>
+
+                <strong>
+                    HEATWAVE
+                </strong>
+
+                <small>
+                    Temperature
+                </small>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        DisasterGuard AI •
+        <span>Risk Intelligence System</span>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        const form =
+            document.getElementById("riskForm");
+
+        const button =
+            document.getElementById("detectBtn");
+
+
+        form.addEventListener(
+            "submit",
+            async function(event) {
+
+                event.preventDefault();
+
+
+                button.disabled = true;
+
+                button.innerText =
+                    "⏳ ANALYZING ENVIRONMENT...";
+
+
+                const formData =
+                    new FormData(form);
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            "/predict",
+                            {
+                                method: "POST",
+                                body: formData
+                            }
+                        );
+
+
+                    const data =
+                        await response.json();
+
+
+                    if (data.error) {
+
+                        throw new Error(
+                            data.error
+                        );
+
+                    }
+
+
+                    document
+                        .getElementById(
+                            "emptyState"
+                        )
+                        .style.display = "none";
+
+
+                    document
+                        .getElementById(
+                            "result"
+                        )
+                        .style.display = "block";
+
+
+                    document
+                        .getElementById(
+                            "risk"
+                        )
+                        .innerText =
+                        data.risk;
+
+
+                    document
+                        .getElementById(
+                            "probability"
+                        )
+                        .innerText =
+                        data.probability + "%";
+
+
+                    /* RISK LEVEL */
+
+                    const level =
+                        data.risk_level
+                            .toLowerCase();
+
+
+                    const levelElement =
+                        document.getElementById(
+                            "riskLevel"
+                        );
+
+
+                    levelElement.className =
+                        "risk-badge";
+
+
+                    if (level === "low") {
+
+                        levelElement.classList
+                            .add("risk-low");
+
+                    }
+
+                    else if (
+                        level === "medium"
+                    ) {
+
+                        levelElement.classList
+                            .add("risk-medium");
+
+                    }
+
+                    else {
+
+                        levelElement.classList
+                            .add("risk-high");
+
+                    }
+
+
+                    levelElement.innerText =
+                        data.risk_level +
+                        " RISK";
+
+
+                    /* PROGRESS */
+
+                    document
+                        .getElementById(
+                            "progressBar"
+                        )
+                        .style.width =
+                        data.probability + "%";
+
+
+                    /* ICON */
+
+                    const icons = {
+
+                        "Flood": "🌊",
+
+                        "Earthquake": "🌎",
+
+                        "Cyclone": "🌀",
+
+                        "Landslide": "⛰️",
+
+                        "Heatwave": "🔥",
+
+                        "Safe": "🛡️"
+
+                    };
+
+
+                    document
+                        .getElementById(
+                            "resultIcon"
+                        )
+                        .innerText =
+                        icons[data.risk]
+                        || "🚨";
+
+
+                    /* RECOMMENDATIONS */
+
+                    const recommendationBox =
+                        document.getElementById(
+                            "recommendations"
+                        );
+
+
+                    recommendationBox.innerHTML =
+                        "";
+
+
+                    data.recommendations
+                        .forEach(function(item) {
+
+                            const div =
+                                document.createElement(
+                                    "div"
+                                );
+
+
+                            div.className =
+                                "recommendation";
+
+
+                            div.innerHTML = `
+
+                                <span class="check">
+                                    ✓
+                                </span>
+
+                                <span>
+                                    ${item}
+                                </span>
+
+                            `;
+
+
+                            recommendationBox
+                                .appendChild(div);
+
+                        });
+
+                }
+
+
+                catch(error) {
+
+                    alert(
+                        "Analysis failed: " +
+                        error.message
+                    );
+
+                }
+
+
+                finally {
+
+                    button.disabled =
+                        false;
+
+                    button.innerText =
+                        "🔍 ANALYZE DISASTER RISK";
+
+                }
+
+            }
+
+        );
+
+    </script>
+
 
 </body>
 
